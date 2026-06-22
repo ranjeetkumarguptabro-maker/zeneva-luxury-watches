@@ -1153,6 +1153,57 @@
     </div>
   </div>
 
+  <!-- Shopping Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3 class="cart-drawer-title">YOUR SELECTION</h3>
+      <button class="cart-drawer-close" id="closeCartDrawer" aria-label="Close Shopping Cart">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+    
+    <div class="cart-drawer-content">
+      <div class="cart-drawer-empty" id="cartDrawerEmpty">
+        <span class="material-icons empty-cart-icon">shopping_bag</span>
+        <p class="empty-cart-text">Your shopping cart is empty.</p>
+        <a href="#products-catalog" class="continue-shopping-btn" id="continueShoppingBtn">Continue Browsing</a>
+      </div>
+      <div class="cart-drawer-items" id="cartDrawerItems">
+        <!-- Dynamically populated cart items -->
+      </div>
+    </div>
+    
+    <div class="cart-drawer-footer" id="cartDrawerFooter" style="display: none;">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">€0.00</span>
+      </div>
+      <div class="cart-summary-row shipping-row">
+        <span>Shipping</span>
+        <span class="free-shipping">Complimentary</span>
+      </div>
+      <div class="cart-summary-row vat-row">
+        <span>Total (with VAT)</span>
+        <span class="cart-total-price" id="cartTotal">€0.00</span>
+      </div>
+      <div class="cart-promo-container">
+        <input type="text" class="promo-input" id="promoInput" placeholder="Promo Code (e.g. ZENEVA10)">
+        <button class="promo-apply-btn" id="promoApplyBtn">Apply</button>
+      </div>
+      <div class="promo-msg" id="promoMsg"></div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Checkout Modal / Success Pane -->
+    <div class="checkout-success-pane" id="checkoutSuccessPane">
+      <span class="material-icons success-check-icon">check_circle</span>
+      <h3>Order Placed!</h3>
+      <p>Thank you for choosing ZENĒVA. A confirmation email with shipping details has been sent.</p>
+      <button class="close-success-pane-btn" id="closeSuccessPaneBtn">Close</button>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
