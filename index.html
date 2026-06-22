@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZENĒVA - High-end Luxury Wristwatches and Fine Jewelry. Experience timeless craftsmanship, 3D model showcase, and premium collections.">
+  <title>ZENĒVA | Luxury Wristwatches & Fine Jewelry</title>
+  
+  <!-- Google Fonts: Cinzel for Brand Logo & Headers, Inter for Navigation & Body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Material Icons for sleek navbar icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Google <model-viewer> for rendering the 3D GLB model -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span>Complimentary Worldwide Shipping on All Orders. Experience ZENĒVA.</span>
+  </div>
+
+  <!-- Main Luxury Header / Navbar -->
+  <header class="main-header">
+    <div class="header-container">
+      
+      <!-- Primary Navigation (Left side) -->
+      <nav class="primary-nav">
+        <ul>
+          <li><a href="#all-brands" class="nav-link">All brands</a></li>
+          <li><a href="#women" class="nav-link">Women's watches</a></li>
+          <li><a href="#men" class="nav-link">Men's watches</a></li>
+          <li><a href="#jewelry" class="nav-link">Jewelry</a></li>
+        </ul>
+      </nav>
+
+      <!-- Brand Logo (Middle) -->
+      <a href="#" class="brand-logo" id="brand-logo-btn">ZENĒVA</a>
+      
+      <!-- Utility Navigation (Right side) -->
+      <div class="utility-nav">
+        <a href="#stores" class="utility-item">
+          <span class="material-icons">storefront</span>
+          <span class="item-text">Our stores</span>
+        </a>
+        <a href="#service" class="utility-item">
+          <span class="material-icons">support_agent</span>
+          <span class="item-text">Service center</span>
+        </a>
+        
+        <!-- Search Trigger -->
+        <button class="utility-item search-trigger" id="searchBtn" aria-label="Search">
+          <span class="material-icons">search</span>
+          <span class="item-text">Search</span>
+        </button>
+        
+        <!-- Shopping Cart -->
+        <a href="#cart" class="utility-item cart-btn" id="cartBtn">
+          <img src="assets/shopping-bag.png" alt="Cart" class="cart-icon-img">
+          <span class="item-text">Shopping cart: <span class="cart-count">(0)</span></span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span class="material-icons">menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Secondary Sub-Navbar for Jewelry (revealed on Jewelry click) -->
+  <div class="sub-navbar" id="jewelrySubNavbar">
+    <div class="sub-navbar-container">
+      <a href="#jewelry" class="sub-nav-link" data-category="rings">Rings</a>
+      <a href="#jewelry" class="sub-nav-link" data-category="necklaces">Necklaces</a>
+      <a href="#jewelry" class="sub-nav-link" data-category="bracelets">Bracelets</a>
+      <a href="#jewelry" class="sub-nav-link" data-category="cufflinks">Cufflinks</a>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Nav Menu -->
+  <div class="mobile-nav" id="mobileNav">
+    <nav class="mobile-nav-list">
+      <a href="#all-brands">All brands</a>
+      <a href="#women">Women's watches</a>
+      <a href="#men">Men's watches</a>
+      <a href="#jewelry">Jewelry</a>
+      <hr>
+      <a href="#stores">Our stores</a>
+      <a href="#service">Service center</a>
+      <a href="#accessories">Accessories</a>
+      <a href="#outlet">OUTLET</a>
+      <a href="#giftcards">Gift cards</a>
+    </nav>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-modal">
+      <button class="close-search" id="closeSearch"><span class="material-icons">close</span></button>
+      <div class="search-box">
+        <input type="text" placeholder="Search ZENĒVA Collections..." id="searchInput">
+        <button class="search-submit"><span class="material-icons">arrow_forward</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section with Background Video and 3D Model Overlay -->
+  <section class="hero-section">
+    <!-- Background Video -->
+    <div class="video-container">
+      <video class="bg-video" autoplay loop muted playsinline>
+        <source src="assets/hero-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+
+    <!-- Cinematic Hero Intro Text (Visible first) -->
+    <div class="hero-intro" id="heroIntro">
+      <h1 class="hero-title">Timeless Perfection</h1>
+      <p class="hero-subtitle">Crafting the future of horology. Excellence in every second.</p>
+    </div>
+
+    <!-- 3D Model Container (Appears after transition / 2-3 seconds) -->
+    <div class="model-container hidden" id="modelContainer">
+      <div class="model-wrapper">
+        <button class="model-nav-btn prev-btn" id="prevWatchBtn" aria-label="Previous watch">
+          <span class="material-icons">chevron_left</span>
+        </button>
+        <model-viewer 
+          id="wristwatch-viewer"
+          src="assets/wristwatch.glb" 
+          alt="ZENĒVA Golden Wristwatch 3D Model" 
+          camera-controls 
+          camera-orbit="90deg 90deg auto"
+          disable-zoom
+          disable-pan
+          shadow-intensity="2" 
+          shadow-softness="0.75" 
+          environment-image="neutral"
+          interaction-prompt="none"
+          loading="eager">
+        </model-viewer>
+        <button class="model-nav-btn next-btn" id="nextWatchBtn" aria-label="Next watch">
+          <span class="material-icons">chevron_right</span>
+        </button>
+        <!-- Custom Label for 3D model -->
+        <div class="model-badge">
+          <span class="badge-title" id="badgeTitle">ZENĒVA CHRONO GOLD</span>
+          <span class="badge-subtitle" id="badgeSubtitle">Interactive 3D Preview - Spin to Explore</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Downward scroll indicator -->
+    <div class="scroll-down">
+      <span class="scroll-text">Discover More</span>
+      <span class="material-icons scroll-arrow">expand_more</span>
+    </div>
+  </section>
+
+  <!-- 3D Animated Watch Catalog Grid -->
+  <section class="catalog-section" id="products-catalog">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">New Arrivals</h2>
+        <p class="section-description">Discover the Sector collection. Timeless precision meets modern 3D design aesthetics.</p>
+      </div>
+
+      <div class="products-grid">
+        
+        <!-- Product 1 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-new">NEW</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch1-large.png" alt="Sector Collection 660 Silver" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Sector Collection 660</h3>
+            <p class="product-variant">Silver Dial & Stainless Steel</p>
+            <div class="product-footer">
+              <span class="product-price">€100.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-new">NEW</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch2-large.png" alt="Sector Collection 660 Black" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Sector Collection 660</h3>
+            <p class="product-variant">Midnight Black Dial</p>
+            <div class="product-footer">
+              <span class="product-price">€100.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-new">NEW</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch3-large.jpg" alt="Sector Collection 660 Ocean Blue Dial" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Sector Collection 660</h3>
+            <p class="product-variant">Ocean Blue Dial</p>
+            <div class="product-footer">
+              <span class="product-price">€100.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-new">NEW</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch4-large.jpg" alt="Sector Collection 660 Rose Gold Black Steel" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Sector Collection 660</h3>
+            <p class="product-variant">Rose Gold Black Steel</p>
+            <div class="product-footer">
+              <span class="product-price">€130.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-new">NEW</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch1-large.png" alt="Sector Collection 230 Chrono Cobalt" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Sector Collection 230</h3>
+            <p class="product-variant">Chrono Cobalt Blue</p>
+            <div class="product-footer">
+              <span class="product-price">€240.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-new">NEW</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch1-large.png" alt="Sector Collection 270 Panda" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Sector Collection 270</h3>
+            <p class="product-variant">Classic Panda Chronograph</p>
+            <div class="product-footer">
+              <span class="product-price">€140.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-new">NEW</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch7-large.png" alt="Sector Collection 270 Black & Gold Sports Chronograph" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Sector Collection 270</h3>
+            <p class="product-variant">Black & Gold Sports Chrono</p>
+            <div class="product-footer">
+              <span class="product-price">€170.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-new">NEW</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch1-large.png" alt="Sector Collection 230 White Chrono" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Sector Collection 230</h3>
+            <p class="product-variant">Steel White Chronograph</p>
+            <div class="product-footer">
+              <span class="product-price">€200.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D Animated Special Offers / Sale Catalog -->
+  <section class="catalog-section sale-catalog-section" id="special-offers">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag-sale">EXCLUSIVE DEALS</span>
+        <h2 class="section-title">Special Offers</h2>
+        <p class="section-description">Timeless Tissot and Edox masterpieces with up to 50% discount.</p>
+      </div>
+
+      <div class="products-grid">
+        
+        <!-- Product 9 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-sale">SALE -50%</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch9-large.png" alt="Edox Les Bémonts Square Dial" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Edox Les Bémonts</h3>
+            <p class="product-variant">Classic Square Dial Bicolor</p>
+            <div class="product-footer">
+              <span class="product-price"><span class="old-price">€975.00</span> €487.50</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-sale">SALE -50%</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch10-large.png" alt="Tissot Lady Round" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Tissot Lady Round</h3>
+            <p class="product-variant">Classic Silver Steel</p>
+            <div class="product-footer">
+              <span class="product-price"><span class="old-price">€385.00</span> €192.50</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-sale">SALE -50%</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch11-large.png" alt="Tissot My T" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Tissot My T</h3>
+            <p class="product-variant">Square Dial Silver / Leather</p>
+            <div class="product-footer">
+              <span class="product-price"><span class="old-price">€495.00</span> €247.50</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-sale">SALE -50%</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch12-large.png" alt="Tissot T-Touch II White" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Tissot T-Touch II</h3>
+            <p class="product-variant">Tactile White Mother of Pearl</p>
+            <div class="product-footer">
+              <span class="product-price"><span class="old-price">€1,390.00</span> €695.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 13 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-sale">SALE -50%</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="assets/watch13-large.png" alt="Tissot T-Touch II Black" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Tissot T-Touch II</h3>
+            <p class="product-variant">Tactile Black Mother of Pearl</p>
+            <div class="product-footer">
+              <span class="product-price"><span class="old-price">€1,390.00</span> €695.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 14 -->
+        <div class="product-3d-card" data-tilt>
+          <div class="product-badge-sale">SALE -50%</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=400&q=80" alt="Tissot T-Wave" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Tissot T-Wave</h3>
+            <p class="product-variant">Burgundy Leather Strap</p>
+            <div class="product-footer">
+              <span class="product-price"><span class="old-price">€940.00</span> €470.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 15 -->
+        <div class="product-3d-card" data-tilt>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="Tissot Lovely Square" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Tissot Lovely Square</h3>
+            <p class="product-variant">Rose Gold Mesh Bracelet</p>
+            <div class="product-footer">
+              <span class="product-price">€470.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 16 -->
+        <div class="product-3d-card" data-tilt>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <span class="material-icons">favorite_border</span>
+          </button>
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1639006570490-79c0c53f1080?auto=format&fit=crop&w=400&q=80" alt="Tissot Ballade" class="product-watch-img">
+            <div class="product-glow"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Tissot Ballade</h3>
+            <p class="product-variant">White Leather & Rose Gold</p>
+            <div class="product-footer">
+              <span class="product-price">€1,000.00</span>
+              <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Jewelry Section with Filter Sidebar -->
+  <section class="catalog-section jewelry-section-container" id="jewelry">
+    <div class="section-container jewelry-layout">
+      
+      <!-- Left Sidebar: Filter By -->
+      <aside class="filter-sidebar">
+        <h3 class="filter-heading">FILTER BY</h3>
+        
+        <!-- Favorites Filter -->
+        <div class="filter-group">
+          <h4 class="filter-title">Favorites</h4>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox" data-filter="new-products">
+            New product (8)
+          </label>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-group">
+          <h4 class="filter-title">Price Range</h4>
+          <div class="price-slider-container">
+            <span class="price-range-text">€18.00 - €89.00</span>
+            <input type="range" min="18" max="89" value="89" class="price-slider-input" id="priceRangeSlider">
+            <div class="slider-display">Max Price: <span id="sliderVal">€89.00</span></div>
+          </div>
+        </div>
+
+        <!-- Brand Filter -->
+        <div class="filter-group">
+          <h4 class="filter-title">Brand</h4>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox brand-cb" data-brand="Pierre Lannier">
+            PIERRE LANNIER (8)
+          </label>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox brand-cb" data-brand="Sokolov">
+            SOKOLOV (4)
+          </label>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox brand-cb" data-brand="Rochet">
+            ROCHET (3)
+          </label>
+        </div>
+
+        <!-- Gender Filter -->
+        <div class="filter-group">
+          <h4 class="filter-title">Gender</h4>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox gender-cb" data-gender="Children's">
+            Children's (2)
+          </label>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox gender-cb" data-gender="Women's">
+            Women's (10)
+          </label>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox gender-cb" data-gender="Men's">
+            Men's (3)
+          </label>
+        </div>
+
+        <!-- Stone Filter -->
+        <div class="filter-group">
+          <h4 class="filter-title">Stone</h4>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox stone-cb" data-stone="Crystals">
+            Crystals (3)
+          </label>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox stone-cb" data-stone="Fianite">
+            Fianite (2)
+          </label>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox stone-cb" data-stone="Topaz">
+            Topaz (1)
+          </label>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox stone-cb" data-stone="None">
+            None (9)
+          </label>
+        </div>
+
+      </aside>
+
+      <!-- Right Main: Catalog List -->
+      <main class="jewelry-main">
+        <div class="section-header jewelry-header">
+          <h2 class="section-title">Jewelry Collection</h2>
+          <div class="catalog-meta">
+            <span class="products-count-text"><span id="activeCount">15</span> products are displayed</span>
+            <div class="sort-selector-container">
+              <label for="sortChoose">Sort by:</label>
+              <select id="sortChoose" class="sort-select">
+                <option value="choose">Choose</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Animated Jewelry Grid -->
+        <div class="products-grid jewelry-grid">
+          
+          <!-- Product 17 (ASTORIA) -->
+          <div class="product-3d-card jewelry-card" data-index="16" data-brand="Pierre Lannier" data-price="33.75" data-gender="Women's" data-stone="Crystals" data-category="rings" data-new="true">
+            <div class="product-badge-sale">-25%</div>
+            <div class="product-badge-new" style="top:45px;">NEW</div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" alt="Pierre Lannier ASTORIA" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Pierre Lannier ASTORIA</h3>
+              <p class="product-variant">Crystal Star Gold Ring</p>
+              <div class="product-footer">
+                <span class="product-price"><span class="old-price">€45.00</span> €33.75</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 18 (RUBYA) -->
+          <div class="product-3d-card jewelry-card" data-index="17" data-brand="Pierre Lannier" data-price="26.25" data-gender="Women's" data-stone="Crystals" data-category="rings" data-new="true">
+            <div class="product-badge-sale">-25%</div>
+            <div class="product-badge-new" style="top:45px;">NEW</div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=400&q=80" alt="Pierre Lannier RUBYA" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Pierre Lannier RUBYA</h3>
+              <p class="product-variant">Floral Gold Ring</p>
+              <div class="product-footer">
+                <span class="product-price"><span class="old-price">€35.00</span> €26.25</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 19 (Panther) -->
+          <div class="product-3d-card jewelry-card" data-index="18" data-brand="Sokolov" data-price="47.00" data-gender="Women's" data-stone="Fianite" data-category="rings" data-new="false">
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=400&q=80" alt="Sokolov Panther" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Sokolov Panther</h3>
+              <p class="product-variant">Diamond Panther Ring</p>
+              <div class="product-footer">
+                <span class="product-price">€47.00</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 20 (Cat) -->
+          <div class="product-3d-card jewelry-card" data-index="19" data-brand="Sokolov" data-price="23.00" data-gender="Children's" data-stone="Topaz" data-category="rings" data-new="false">
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=400&q=80" alt="Sokolov Kitten" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Sokolov Kitten</h3>
+              <p class="product-variant">Playful Cat Silver Ring</p>
+              <div class="product-footer">
+                <span class="product-price">€23.00</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 21 (Bear) -->
+          <div class="product-3d-card jewelry-card" data-index="20" data-brand="Sokolov" data-price="18.00" data-gender="Children's" data-stone="Fianite" data-category="rings" data-new="false">
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" alt="Sokolov Teddy Bear" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Sokolov Bear</h3>
+              <p class="product-variant">Red Heart Teddy Ring</p>
+              <div class="product-footer">
+                <span class="product-price">€18.00</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 22 (Flower) -->
+          <div class="product-3d-card jewelry-card" data-index="21" data-brand="Sokolov" data-price="42.00" data-gender="Women's" data-stone="None" data-category="rings" data-new="false">
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=400&q=80" alt="Sokolov Flower" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Sokolov Flower</h3>
+              <p class="product-variant">Scarlet Blossom Ring</p>
+              <div class="product-footer">
+                <span class="product-price">€42.00</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 23 (Necklace: Pierre Lannier SOLINE) -->
+          <div class="product-3d-card jewelry-card" data-index="22" data-brand="Pierre Lannier" data-price="48.75" data-gender="Women's" data-stone="None" data-category="necklaces" data-new="true">
+            <div class="product-badge-sale">-25%</div>
+            <div class="product-badge-new" style="top:45px;">NEW</div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" alt="Pierre Lannier SOLINE" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Pierre Lannier SOLINE</h3>
+              <p class="product-variant">Circle Gold Pendant Necklace</p>
+              <div class="product-footer">
+                <span class="product-price"><span class="old-price">€65.00</span> €48.75</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 24 (Necklace: Pierre Lannier LUNELIA) -->
+          <div class="product-3d-card jewelry-card" data-index="23" data-brand="Pierre Lannier" data-price="41.25" data-gender="Women's" data-stone="Crystals" data-category="necklaces" data-new="true">
+            <div class="product-badge-sale">-25%</div>
+            <div class="product-badge-new" style="top:45px;">NEW</div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80" alt="Pierre Lannier LUNELIA" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Pierre Lannier LUNELIA</h3>
+              <p class="product-variant">Double Chain Silver Necklace</p>
+              <div class="product-footer">
+                <span class="product-price"><span class="old-price">€55.00</span> €41.25</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 25 (Necklace: Pierre Lannier ASTORIA) -->
+          <div class="product-3d-card jewelry-card" data-index="24" data-brand="Pierre Lannier" data-price="48.75" data-gender="Women's" data-stone="None" data-category="necklaces" data-new="true">
+            <div class="product-badge-sale">-25%</div>
+            <div class="product-badge-new" style="top:45px;">NEW</div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=400&q=80" alt="Pierre Lannier ASTORIA" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Pierre Lannier ASTORIA</h3>
+              <p class="product-variant">Black Star Gold Necklace</p>
+              <div class="product-footer">
+                <span class="product-price"><span class="old-price">€65.00</span> €48.75</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 26 (Bracelet: Pierre Lannier ISALIA - Green) -->
+          <div class="product-3d-card jewelry-card" data-index="25" data-brand="Pierre Lannier" data-price="26.25" data-gender="Women's" data-stone="None" data-category="bracelets" data-new="true">
+            <div class="product-badge-sale">-25%</div>
+            <div class="product-badge-new" style="top:45px;">NEW</div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80" alt="Pierre Lannier ISALIA Green" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Pierre Lannier ISALIA</h3>
+              <p class="product-variant">Green Cord Gold Bracelet</p>
+              <div class="product-footer">
+                <span class="product-price"><span class="old-price">€35.00</span> €26.25</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 27 (Bracelet: Pierre Lannier ISALIA - Blue) -->
+          <div class="product-3d-card jewelry-card" data-index="26" data-brand="Pierre Lannier" data-price="26.25" data-gender="Women's" data-stone="None" data-category="bracelets" data-new="true">
+            <div class="product-badge-sale">-25%</div>
+            <div class="product-badge-new" style="top:45px;">NEW</div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" alt="Pierre Lannier ISALIA Blue" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Pierre Lannier ISALIA</h3>
+              <p class="product-variant">Blue Cord Gold Bracelet</p>
+              <div class="product-footer">
+                <span class="product-price"><span class="old-price">€35.00</span> €26.25</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 28 (Bracelet: Pierre Lannier ISALIA - Black) -->
+          <div class="product-3d-card jewelry-card" data-index="27" data-brand="Pierre Lannier" data-price="26.25" data-gender="Women's" data-stone="None" data-category="bracelets" data-new="true">
+            <div class="product-badge-sale">-25%</div>
+            <div class="product-badge-new" style="top:45px;">NEW</div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=400&q=80" alt="Pierre Lannier ISALIA Black" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Pierre Lannier ISALIA</h3>
+              <p class="product-variant">Black Cord Gold Bracelet</p>
+              <div class="product-footer">
+                <span class="product-price"><span class="old-price">€35.00</span> €26.25</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 29 (Cufflinks: Rochet MERCURY - Silver) -->
+          <div class="product-3d-card jewelry-card" data-index="28" data-brand="Rochet" data-price="72.00" data-gender="Men's" data-stone="None" data-category="cufflinks" data-new="false">
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?auto=format&fit=crop&w=400&q=80" alt="Rochet MERCURY Silver" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Rochet MERCURY</h3>
+              <p class="product-variant">Silver & White Carbon Cufflinks</p>
+              <div class="product-footer">
+                <span class="product-price">€72.00</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 30 (Cufflinks: Rochet MARINA - Black) -->
+          <div class="product-3d-card jewelry-card" data-index="29" data-brand="Rochet" data-price="89.00" data-gender="Men's" data-stone="None" data-category="cufflinks" data-new="false">
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=400&q=80" alt="Rochet MARINA Black" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Rochet MARINA</h3>
+              <p class="product-variant">Stealth Steel & Resin Cufflinks</p>
+              <div class="product-footer">
+                <span class="product-price">€89.00</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 31 (Cufflinks: Rochet MERCURY - Black) -->
+          <div class="product-3d-card jewelry-card" data-index="30" data-brand="Rochet" data-price="72.00" data-gender="Men's" data-stone="None" data-category="cufflinks" data-new="false">
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+            <div class="product-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=400&q=80" alt="Rochet MERCURY Black" class="product-watch-img">
+              <div class="product-glow"></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Rochet MERCURY</h3>
+              <p class="product-variant">Silver & Black Carbon Cufflinks</p>
+              <div class="product-footer">
+                <span class="product-price">€72.00</span>
+                <button class="add-to-cart-btn"><span class="material-icons">add_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>_shopping_cart</span></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+  </section>
+
+  <!-- Secondary Category & Area Section (White Background) -->
+  <section class="categories-section" id="categories">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Explore Collections</h2>
+        <p class="section-description">A curated selection of luxury accessories, gift sets, and exclusive outlet deals.</p>
+      </div>
+
+      <!-- Categories Grid (Displaying the rest of the requested links) -->
+      <div class="categories-grid">
+        
+        <!-- Accessories Card -->
+        <a href="#accessories" class="category-card">
+          <div class="card-bg accessories-bg"></div>
+          <div class="card-content">
+            <span class="card-tag">Premium Details</span>
+            <h3 class="card-title">Accessories</h3>
+            <span class="card-link">Explore Now <span class="material-icons">arrow_right_alt</span></span>
+          </div>
+        </a>
+
+        <!-- Watches with Logo Card -->
+        <a href="#watches-with-logo" class="category-card">
+          <div class="card-bg logo-watches-bg"></div>
+          <div class="card-content">
+            <span class="card-tag">Bespoke Customization</span>
+            <h3 class="card-title">Watches with Logo</h3>
+            <span class="card-link">Configure Custom <span class="material-icons">arrow_right_alt</span></span>
+          </div>
+        </a>
+
+        <!-- OUTLET Card -->
+        <a href="#outlet" class="category-card highlighted-card">
+          <div class="card-bg outlet-bg"></div>
+          <div class="card-content">
+            <span class="card-tag">Special Offers</span>
+            <h3 class="card-title">OUTLET</h3>
+            <span class="card-link">Shop Collection <span class="material-icons">arrow_right_alt</span></span>
+          </div>
+        </a>
+
+        <!-- Gift Cards Card -->
+        <a href="#giftcards" class="category-card">
+          <div class="card-bg giftcards-bg"></div>
+          <div class="card-content">
+            <span class="card-tag">The Gift of Choice</span>
+            <h3 class="card-title">Gift Cards</h3>
+            <span class="card-link">Purchase Gift Card <span class="material-icons">arrow_right_alt</span></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Detail Modal -->
+  <div class="product-modal-overlay" id="productModal">
+    <div class="product-modal">
+      <button class="close-modal-btn" id="closeModal" aria-label="Close modal"><span class="material-icons">close</span></button>
+      <div class="modal-content">
+        
+        <!-- Left: Image Gallery with 3D tilt -->
+        <div class="modal-gallery">
+          <div class="main-preview-container" id="modalTiltContainer">
+            <img src="assets/watch1-large.png" alt="Watch Main View" id="modalMainImg" class="modal-main-img">
+            <div class="gallery-glow"></div>
+          </div>
+          <div class="gallery-thumbnails" id="modalThumbnails">
+            <!-- Dynamically populated thumbnails -->
+          </div>
+        </div>
+
+        <!-- Right: Product Details & Specs -->
+        <div class="modal-details">
+          <div class="details-top">
+            <span class="stock-badge" id="modalStock"><span class="material-icons">inventory_2</span> Last items in stock</span>
+            <span class="model-reference" id="modalRef">Note: R3253517030</span>
+          </div>
+          
+          <h2 class="modal-product-title" id="modalTitle">SECTOR COLLECTION 660 - R3253517030</h2>
+          
+          <div class="price-container">
+            <span class="modal-price" id="modalPrice">€100.00</span>
+            <span class="vat-tag">WITH VAT</span>
+          </div>
+
+          <!-- Financing Options -->
+          <div class="financing-box">
+            <p class="installments-text" id="modalInstallments">Pay in 3 installments without surcharge: €33.34, €33.34, €33.32.</p>
+            <div class="monthly-payment-row">
+              <span class="payment-stat" id="modalMonthly">Monthly payment from €2.40</span>
+              <span class="payment-stat" id="modalDownpayment">Minimum down payment 0.00 €</span>
+            </div>
+          </div>
+
+          <!-- Shopping Actions -->
+          <div class="purchase-actions">
+            <div class="qty-selector">
+              <button class="qty-btn" id="qtyMinus">-</button>
+              <input type="number" value="1" min="1" max="10" class="qty-input" id="modalQty" readonly>
+              <button class="qty-btn" id="qtyPlus">+</button>
+            </div>
+            
+            <button class="modal-add-to-cart" id="modalAddToCart">
+              <span class="material-icons">add_shopping_cart</span> Add to Cart
+            </button>
+            
+            <button class="modal-wishlist" id="modalWishlist" aria-label="Add to wishlist">
+              <span class="material-icons">favorite_border</span>
+            </button>
+          </div>
+
+          <!-- Share Section -->
+          <div class="share-actions">
+            <span>Share:</span>
+            <a href="#" class="share-link"><span class="material-icons">share</span> Share</a>
+            <a href="#" class="share-link"><span class="material-icons">chat_bubble_outline</span> Tweet</a>
+            <a href="#" class="share-link"><span class="material-icons">bookmark_border</span> Pinterest</a>
+          </div>
+
+          <!-- Product Details Specs -->
+          <div class="specs-section">
+            <h4 class="specs-title">Technical Specifications</h4>
+            <div class="specs-table-container">
+              <table class="specs-table" id="modalSpecsTable">
+                <!-- Dynamically populated specs table rows -->
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Premium Showcase Feature Grid -->
+  <section class="features-section">
+    <div class="section-container">
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="material-icons feature-icon">workspace_premium</span>
+          <h4 class="feature-title">Swiss Heritage</h4>
+          <p class="feature-text">Our timepieces are engineered with Swiss accuracy and handmade detailing.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-icons feature-icon">verified</span>
+          <h4 class="feature-title">Lifetime Warranty</h4>
+          <p class="feature-text">We stand behind our materials and movement quality with an international warranty.</p>
+        </div>
+        <div class="feature-item">
+          <span class="material-icons feature-icon">schedule</span>
+          <h4 class="feature-title">Expert Service</h4>
+          <p class="feature-text">Visit our global Service Centers for specialized maintenance and tuning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2 class="footer-logo">ZENĒVA</h2>
+        <p>Crafting timeless masterpieces since 1994.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h5>Services</h5>
+          <a href="#stores">Our stores</a>
+          <a href="#service">Service center</a>
+          <a href="#warranty">Warranty & Repairs</a>
+        </div>
+        <div class="footer-column">
+          <h5>Legal</h5>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms & Conditions</a>
+          <a href="#cookies">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ZENĒVA Luxury Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating AI Assistant Chatbot Button -->
+  <button class="ai-chatbot-toggle-btn" id="aiChatbotToggle" aria-label="Open AI Assistant">
+    <span class="material-icons">auto_awesome</span>
+    <span class="pulse-ring"></span>
+  </button>
+
+  <!-- AI Assistant Chatbot Panel -->
+  <div class="ai-chatbot-widget" id="aiChatbotWidget">
+    <div class="chatbot-header">
+      <div class="chatbot-profile">
+        <span class="material-icons chatbot-avatar">auto_awesome</span>
+        <div class="chatbot-meta">
+          <span class="chatbot-name">ZENĒVA AI Stylist</span>
+          <span class="chatbot-status">Online</span>
+        </div>
+      </div>
+      <button class="chatbot-close-btn" id="closeChatbot" aria-label="Close Chatbot">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+    
+    <!-- Chat Log Area -->
+    <div class="chatbot-messages" id="chatbotMessages">
+      <!-- Dynamically populated messages -->
+    </div>
+    
+    <!-- Input Section -->
+    <div class="chatbot-input-container">
+      <label class="chatbot-attach-btn" for="handPhotoUpload" aria-label="Upload hand photo">
+        <span class="material-icons">photo_camera</span>
+        <input type="file" id="handPhotoUpload" accept="image/*" style="display: none;">
+      </label>
+      <input type="text" class="chatbot-text-input" id="chatbotTextInput" placeholder="Message AI assistant..." autocomplete="off">
+      <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send Message">
+        <span class="material-icons">arrow_upward</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
